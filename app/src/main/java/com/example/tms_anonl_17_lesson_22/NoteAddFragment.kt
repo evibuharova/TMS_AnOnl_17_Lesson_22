@@ -24,8 +24,6 @@ class NoteAddFragment : Fragment() {
     //переопределили метод и вставили адаптер
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //чтобы перейти на предыдущий экран ,вызовем функцию
-//        requireActivity().onBackPressedDispatcher.onBackPressed()
         binding?.saveButton?.setOnClickListener {
             val newMote = Note(
                 binding?.headerEditText?.text?.toString() ?: "",
@@ -33,8 +31,11 @@ class NoteAddFragment : Fragment() {
                 Date().toString()
             )
             NotesHolder.notes.add(newMote)
+            //чтобы перейти на предыдущий экран ,вызовем функцию
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
+
     //метод ондестройвью вызывается каждый раз после возврата на экран
     override fun onDestroyView() {
         binding = null
